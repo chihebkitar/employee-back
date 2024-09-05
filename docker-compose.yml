@@ -1,0 +1,20 @@
+services:
+  emp-api:
+    container_name: emp-api
+    image: emp/emp:1.0.1
+    ports:
+      - 8080:8080
+    networks:
+      - spring-demo
+  emp-ui:
+    container_name: emp-ui
+    image: emp/emp-ui:0.0.1
+    ports:
+      - 8088:80
+    networks:
+      - spring-demo
+    depends_on:
+      - emp-api
+networks:
+  spring-demo:
+    driver: bridge
